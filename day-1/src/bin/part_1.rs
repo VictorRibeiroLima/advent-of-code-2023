@@ -4,7 +4,7 @@ fn main() {
     println!("Result: {}", result)
 }
 
-fn process(input: &str) -> i32 {
+fn process(input: &str) -> u32 {
     let mut result = 0;
     for line in input.lines() {
         let mut first = '\n';
@@ -21,9 +21,10 @@ fn process(input: &str) -> i32 {
         if last == '\n' {
             last = first;
         }
-        let digit = format!("{}{}", first, last).parse::<i32>().unwrap();
+        let first = first.to_digit(10).unwrap();
+        let last = last.to_digit(10).unwrap();
+        let digit = first * 10 + last;
 
-        println!("{} => {}", line, digit);
         result += digit;
     }
     return result;
@@ -38,5 +39,12 @@ mod tests {
         let input = include_str!("../inputs/test_input_part_1.txt");
         let result = process(input);
         assert_eq!(result, 142);
+    }
+
+    #[test]
+    fn my_input() {
+        let input = include_str!("../inputs/my_input_part_1.txt");
+        let result = process(input);
+        assert_eq!(result, 52974);
     }
 }

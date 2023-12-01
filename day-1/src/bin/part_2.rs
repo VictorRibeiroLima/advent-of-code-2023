@@ -92,7 +92,7 @@ fn word_to_digit(word: &str) -> Option<char> {
     }
 }
 
-fn process_line(line: &str, trie: &Trie) -> i32 {
+fn process_line(line: &str, trie: &Trie) -> u32 {
     let mut first = '\n';
     let mut last = '\n';
     let mut word = "".to_string();
@@ -125,11 +125,13 @@ fn process_line(line: &str, trie: &Trie) -> i32 {
     if last == '\n' {
         last = first;
     }
-    let digit = format!("{}{}", first, last).parse::<i32>().unwrap();
+    let first = first.to_digit(10).unwrap();
+    let last = last.to_digit(10).unwrap();
+    let digit = first * 10 + last;
     return digit;
 }
 
-fn process(input: &str) -> i32 {
+fn process(input: &str) -> u32 {
     let trie = Trie::new();
     let mut result = 0;
     for line in input.lines() {
@@ -158,6 +160,13 @@ mod tests {
         let input = include_str!("../inputs/test_input_part_2.txt");
         let result = process(input);
         assert_eq!(result, 281);
+    }
+
+    #[test]
+    fn my_input() {
+        let input = include_str!("../inputs/my_input_part_2.txt");
+        let result = process(input);
+        assert_eq!(result, 53340);
     }
 
     #[test]
