@@ -45,8 +45,6 @@ fn process_line(input: &str) -> u32 {
 
 /*
  The Block is: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-
- return true if the block is valid
 */
 fn process_block(mut input: &str) -> u32 {
     let mut result = 0;
