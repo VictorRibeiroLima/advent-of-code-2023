@@ -99,7 +99,7 @@ mod tests {
 
     #[test]
     fn my_input() {
-        let input = include_str!("../inputs/my_input_part_1.txt");
+        let input = include_str!("../inputs/my_input_part_2.txt");
         let result = process(input);
         assert_eq!(result, 5571760);
     }

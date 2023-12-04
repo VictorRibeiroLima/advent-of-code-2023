@@ -4,7 +4,11 @@ This repository contains my solutions for the [Advent of Code 2023](https://adve
 
 This is my first year participating in the Advent of Code, and I'm excited to see how far I can get!
 
+I'm not doing this for getting the best time or anything (Python is probably the best language for that), but rather to have fun.
+
 ## Solutions
+
+Those are the solutions I've used to get the answers for the challenges.
 
 | Day | Part 1 | Part 2 |
 | --- | ------ | ------ |
@@ -12,3 +16,11 @@ This is my first year participating in the Advent of Code, and I'm excited to se
 | 2 | [Solution](day-2/src/bin/part_1.rs) | [Solution](day-2/src/bin/part_2.rs) |
 | 3 | [Solution](day-3/src/bin/part_1.rs) | [Solution](day-3/src/bin/part_2.rs) |
 | 4 | [Solution](day-4/src/bin/part_1.rs) | [Solution](day-4/src/bin/part_2.rs) |
+
+## Redos
+
+I've decided to redo some of the challenges that I didn't like the first time around.
+
+| Day | Part 1 | Part 2 |
+| --- | ------ | ------ |
+| 4 | [Solution](day-4/src/bin/part_1_redo.rs) | [Solution](day-4/src/bin/part_2_redo.rs) |
