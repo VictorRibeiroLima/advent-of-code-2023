@@ -10,9 +10,7 @@ fn process(input: &str) -> u32 {
     let lines = input.lines().collect::<Vec<&str>>();
     let mut result = 0;
     let mut memory = HashMap::new();
-    let mut loop_count: u64 = 0;
     for i in 0..lines.len() {
-        loop_count += 1;
         let line = lines[i];
         let num_of_matches = if memory.contains_key(&i) {
             *memory.get(&i).unwrap()
@@ -21,16 +19,8 @@ fn process(input: &str) -> u32 {
         };
         let num_of_matches = *memory.entry(i).or_insert(num_of_matches);
         result += 1;
-        sub_process(
-            &lines,
-            &mut result,
-            i,
-            num_of_matches,
-            &mut memory,
-            &mut loop_count,
-        );
+        sub_process(&lines, &mut result, i, num_of_matches, &mut memory);
     }
-    println!("Loop count: {}", loop_count);
     return result;
 }
 
@@ -40,10 +30,8 @@ fn sub_process(
     index: usize,
     num_of_matches: usize,
     memory: &mut HashMap<usize, usize>,
-    loop_count: &mut u64,
 ) {
     for i in index + 1..index + num_of_matches + 1 {
-        *loop_count += 1;
         if i >= lines.len() {
             break;
         }
@@ -55,7 +43,7 @@ fn sub_process(
             *memory.entry(i).or_insert(num_of_matches)
         };
         if num_of_matches != 0 {
-            sub_process(lines, result, i, num_of_matches, memory, loop_count);
+            sub_process(lines, result, i, num_of_matches, memory);
         };
         *result += 1;
     }

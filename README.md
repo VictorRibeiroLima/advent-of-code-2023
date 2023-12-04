@@ -11,3 +11,4 @@ This is my first year participating in the Advent of Code, and I'm excited to se
 | 1 | [Solution](day-1/src/bin/part_1.rs) | [Solution](day-1/src/bin/part_2.rs) |
 | 2 | [Solution](day-2/src/bin/part_1.rs) | [Solution](day-2/src/bin/part_2.rs) |
 | 3 | [Solution](day-3/src/bin/part_1.rs) | [Solution](day-3/src/bin/part_2.rs) |
+| 4 | [Solution](day-4/src/bin/part_1.rs) | [Solution](day-4/src/bin/part_2.rs) |
