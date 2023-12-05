@@ -14,6 +14,7 @@ fn process(input: &str) -> u32 {
     let seeds_input = seeds_input[seeds_input.find(":").unwrap() + 1..].trim();
     let mut seed_ranges: Vec<MapRange> = vec![];
     let mut join_handles = vec![];
+    let mut loops = 0;
 
     let mut start = 0;
     let maps = Maps::new(input);
@@ -36,25 +37,30 @@ fn process(input: &str) -> u32 {
         let map = maps.clone();
         let join_handle = std::thread::spawn(move || {
             let mut lowest_location = std::u32::MAX;
+            let mut loops = 0;
             for seed in seed_range.start..seed_range.end {
+                loops += 1;
                 let location = map.seed_to_location(seed);
 
                 if location < lowest_location {
                     lowest_location = location;
                 }
             }
-            return lowest_location;
+            return (lowest_location, loops);
         });
         join_handles.push(join_handle);
     }
     let mut lowest_location = std::u32::MAX;
     println!("Threads created, waiting for them to finish");
     for handle in join_handles {
-        let result = handle.join().unwrap();
+        let (result, thread_loops) = handle.join().unwrap();
         if result < lowest_location {
             lowest_location = result;
         }
+        loops += thread_loops;
     }
+
+    println!("loops: {}", loops);
 
     return lowest_location;
 }

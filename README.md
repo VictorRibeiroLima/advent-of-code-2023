@@ -22,6 +22,7 @@ Those are the solutions I've used to get the answers for the challenges.
 
 I've decided to redo some of the challenges that I didn't like the first time around.
 
-| Day | Part 1 | Part 2 |
-| --- | ------ | ------ |
-| 4 | [Solution](day-4/src/bin/part_1_redo.rs) | [Solution](day-4/src/bin/part_2_redo.rs) |
+| Day | Part 1 | Part 2 |  Comments |
+| --- | ------ | ------ | --------- |
+| 4 | [Solution](day-4/src/bin/part_1_redo.rs) | [Solution](day-4/src/bin/part_2_redo.rs) | Recursion was a bad idea. |
+| 5 | [Solution](day-5/src/bin/part_1_redo.rs) | [Solution](day-5/src/bin/part_2_redo.rs) | Bruteforcing my way through the solution took too long. |

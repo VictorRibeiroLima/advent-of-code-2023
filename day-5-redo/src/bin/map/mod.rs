@@ -11,7 +11,7 @@ pub struct MapRange {
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct Map {
-    destination: MapRange,
+    pub destination: MapRange,
     pub source: MapRange,
     range: u32,
 }
@@ -50,12 +50,12 @@ impl Map {
 #[derive(Debug)]
 pub struct Maps {
     pub soils: Vec<Map>,
-    fertilizers: Vec<Map>,
-    waters: Vec<Map>,
-    lights: Vec<Map>,
-    temperatures: Vec<Map>,
-    humidities: Vec<Map>,
-    locations: Vec<Map>,
+    pub fertilizers: Vec<Map>,
+    pub waters: Vec<Map>,
+    pub lights: Vec<Map>,
+    pub temperatures: Vec<Map>,
+    pub humidities: Vec<Map>,
+    pub locations: Vec<Map>,
 }
 
 impl Maps {
@@ -104,6 +104,8 @@ impl Maps {
             locations.push(map);
         }
 
+        locations.sort_by(|a, b| a.destination.start.cmp(&b.destination.start));
+
         return Maps {
             soils,
             fertilizers,
@@ -113,6 +115,36 @@ impl Maps {
             humidities,
             locations,
         };
+    }
+
+    pub fn nest_lower_bound(&self, start: u32) -> u32 {
+        let mut nest = None;
+        for map in &self.locations {
+            if start >= map.destination.start {
+                continue;
+            }
+            nest = Some(map.destination.start);
+            break;
+        }
+        if nest.is_some() {
+            return nest.unwrap();
+        }
+
+        for i in (0..self.locations.len()).rev() {
+            let map = &self.locations[i];
+            if start >= map.destination.end {
+                continue;
+            }
+            nest = Some(map.destination.start);
+            break;
+        }
+
+        if nest.is_some() {
+            return nest.unwrap();
+        }
+
+        // No match found,arbitrary nest
+        return start + 10_000;
     }
 
     pub fn seed_to_location(&self, seed: u32) -> u32 {
@@ -131,6 +163,17 @@ impl Maps {
         let location = Maps::source_to_destination(humidity, &self.locations);
 
         return location;
+    }
+
+    pub fn location_to_seed(&self, location: u32) -> u32 {
+        let humidity = Maps::destination_to_source(location, &self.locations);
+        let temperature = Maps::destination_to_source(humidity, &self.humidities);
+        let light = Maps::destination_to_source(temperature, &self.temperatures);
+        let water = Maps::destination_to_source(light, &self.lights);
+        let fertilizer = Maps::destination_to_source(water, &self.waters);
+        let soil = Maps::destination_to_source(fertilizer, &self.fertilizers);
+        let seed = Maps::destination_to_source(soil, &self.soils);
+        return seed;
     }
 
     fn source_to_destination(source: u32, destinations: &Vec<Map>) -> u32 {
@@ -153,6 +196,28 @@ impl Maps {
             destination = Some(source);
         }
         return destination.unwrap();
+    }
+
+    fn destination_to_source(destination: u32, sources: &Vec<Map>) -> u32 {
+        let mut source = None;
+        for map in sources {
+            if destination < map.destination.start {
+                continue;
+            }
+            if destination > map.destination.end {
+                continue;
+            }
+
+            let offset = destination - map.destination.start;
+            source = Some(map.source.start + offset);
+            break;
+        }
+
+        // No match found
+        if source.is_none() {
+            source = Some(destination);
+        }
+        return source.unwrap();
     }
 }
 
