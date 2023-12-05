@@ -127,22 +127,6 @@ mod tests {
     }
 
     #[test]
-    fn test_seed_to_location() {
-        let input = include_str!("../inputs/test_input_part_2.txt");
-        let maps = Maps::new(input);
-        let location = maps.seed_to_location(79);
-        assert_eq!(location, 82);
-    }
-
-    #[test]
-    fn test_seed_to_location2() {
-        let input = include_str!("../inputs/my_input_part_2.txt");
-        let maps = Maps::new(input);
-        let location = maps.seed_to_location(459278395);
-        assert_eq!(location, 260579843);
-    }
-
-    #[test]
     fn my_input() {
         let input = include_str!("../inputs/my_input_part_2.txt");
         let result = process(input);

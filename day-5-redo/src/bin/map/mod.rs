@@ -147,24 +147,6 @@ impl Maps {
         return start + 10_000;
     }
 
-    pub fn seed_to_location(&self, seed: u32) -> u32 {
-        let soil = Maps::source_to_destination(seed, &self.soils);
-
-        let fertilizer = Maps::source_to_destination(soil, &self.fertilizers);
-
-        let water = Maps::source_to_destination(fertilizer, &self.waters);
-
-        let light = Maps::source_to_destination(water, &self.lights);
-
-        let temperature = Maps::source_to_destination(light, &self.temperatures);
-
-        let humidity = Maps::source_to_destination(temperature, &self.humidities);
-
-        let location = Maps::source_to_destination(humidity, &self.locations);
-
-        return location;
-    }
-
     pub fn location_to_seed(&self, location: u32) -> u32 {
         let humidity = Maps::destination_to_source(location, &self.locations);
         let temperature = Maps::destination_to_source(humidity, &self.humidities);
@@ -174,28 +156,6 @@ impl Maps {
         let soil = Maps::destination_to_source(fertilizer, &self.fertilizers);
         let seed = Maps::destination_to_source(soil, &self.soils);
         return seed;
-    }
-
-    fn source_to_destination(source: u32, destinations: &Vec<Map>) -> u32 {
-        let mut destination = None;
-        for map in destinations {
-            if source < map.source.start {
-                continue;
-            }
-            if source > map.source.end {
-                continue;
-            }
-
-            let offset = source - map.source.start;
-            destination = Some(map.destination.start + offset);
-            break;
-        }
-
-        // No match found
-        if destination.is_none() {
-            destination = Some(source);
-        }
-        return destination.unwrap();
     }
 
     fn destination_to_source(destination: u32, sources: &Vec<Map>) -> u32 {
