@@ -46,7 +46,7 @@ fn process(input: &str) -> u32 {
     return lowest_location.unwrap();
 }
 
-/*  This is in general a much better solution than the one in day-5-redo/src/bin/part_2.rs.
+/*  This is in general a much better solution than the one in day-5/src/bin/part_2.rs.
     The idea is to loop over every possible lowest location, and check if it is in the seed ranges.
     Slipt the work into NUMBER_OF_THREADS parts, and use a thread for each part.
 
