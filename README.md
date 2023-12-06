@@ -17,6 +17,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 3 | [Solution](day-3/src/bin/part_1.rs) | [Solution](day-3/src/bin/part_2.rs) |
 | 4 | [Solution](day-4/src/bin/part_1.rs) | [Solution](day-4/src/bin/part_2.rs) |
 | 5 | [Solution](day-5/src/bin/part_1.rs) | [Solution](day-5/src/bin/part_2.rs) |
+| 6 | [Solution](day-6/src/bin/part_1.rs) | [Solution](day-6/src/bin/part_2.rs) |
 
 ## Redos
 
