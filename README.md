@@ -20,6 +20,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 6 | [Solution](day-6/src/bin/part_1.rs) | [Solution](day-6/src/bin/part_2.rs) |
 | 7 | [Solution](day-7/src/part_1/mod.rs) | [Solution](day-7/src/part_2/mod.rs) |
 | 8 | [Solution](day-8/src/part_1/mod.rs) | [Solution](day-8/src/part_2/mod.rs) |
+| 9 | [Solution](day-9/src/part_1/mod.rs) | [Solution](day-9/src/part_2/mod.rs) |
 
 ## Redos
 
