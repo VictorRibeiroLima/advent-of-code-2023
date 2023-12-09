@@ -74,4 +74,11 @@ mod test {
         let result = super::process(input);
         assert_eq!(result, 114);
     }
+
+    #[test]
+    fn test_my_input() {
+        let input = include_str!("../inputs/my_input.txt");
+        let result = super::process(input);
+        assert_eq!(result, 1934898178);
+    }
 }
