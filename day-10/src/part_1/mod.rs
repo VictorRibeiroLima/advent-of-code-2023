@@ -1,23 +1,14 @@
 use crate::map::Map;
 
 pub fn process(input: &str) -> u32 {
-    let mut map = Map::new(input);
-
-    map.connect_pipes();
-    map.prone_unused_pipes();
-
+    let map = Map::init(input);
     println!("{}", map);
-    return 0;
+    let result = map.polygon_points.len() / 2;
+    return result as u32;
 }
 
 #[cfg(test)]
 mod test {
-    #[test]
-    fn test_1_line() {
-        let input = "F-7";
-        let result = super::process(input);
-        assert_eq!(result, 4);
-    }
 
     #[test]
     fn test_simple_input() {
@@ -30,13 +21,13 @@ mod test {
     fn test_input() {
         let input = include_str!("../inputs/test_input.txt");
         let result = super::process(input);
-        assert_eq!(result, 4);
+        assert_eq!(result, 8);
     }
 
     #[test]
     fn test_my_input() {
         let input = include_str!("../inputs/my_input.txt");
         let result = super::process(input);
-        assert_eq!(result, 4);
+        assert_eq!(result, 6856);
     }
 }
