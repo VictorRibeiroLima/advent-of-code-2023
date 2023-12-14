@@ -33,6 +33,7 @@ pub fn process(input: &str) -> usize {
         if let Some(prev) = seen.insert(string, c + 1) {
             /*We are in a closed loop
             So 1->2->3->4->3->2->1 ....
+            3->2->1->4->3->2->1
             We need to register the start of this loop and the length of it
             */
             cycle_start = prev;
@@ -43,9 +44,9 @@ pub fn process(input: &str) -> usize {
 
     /*
     in the example above:
-      1->2->3->4->3->2->1 ....
+      3->2->1->4->3->2->1 ....
 
-    we stopped the loop at "1"
+    we stopped the loop at "3"
 
     and we need to get to the "4"
 
