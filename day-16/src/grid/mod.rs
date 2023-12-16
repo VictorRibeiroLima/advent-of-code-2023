@@ -31,6 +31,14 @@ impl Grid {
         Self { tiles }
     }
 
+    pub fn reset(&mut self) {
+        for row in self.tiles.iter_mut() {
+            for tile in row.iter_mut() {
+                tile.reset();
+            }
+        }
+    }
+
     pub fn energize(&mut self) {
         let initial_direction = Movement::Right;
         let initial_location = (0, 0);

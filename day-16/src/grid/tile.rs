@@ -32,6 +32,11 @@ impl Tile {
         }
     }
 
+    pub fn reset(&mut self) {
+        self.energized = false;
+        self.energy_directions = [false; 4];
+    }
+
     /// Energize the tile and return the direction the beam should go
     pub fn energize(&mut self, bean_direction: Movement) -> (Movement, Option<Movement>) {
         self.energized = true;
