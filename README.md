@@ -27,7 +27,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 13 | [Solution](day-13/src/part_1/mod.rs) | [Solution](day-13/src/part_2/mod.rs) |
 | 14 | [Solution](day-14/src/part_1/mod.rs) | [Solution](day-14/src/part_2/mod.rs) |
 | 15 | [Solution](day-15/src/part_1/mod.rs) | [Solution](day-15/src/part_2/mod.rs) |
-
+| 16 | [Solution](day-16/src/part1.rs) | [Solution](day-16/src/part2.rs) |
 ## Redos
 
 I've decided to redo some of the challenges that I didn't like the first time around.
