@@ -30,6 +30,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 16 | [Solution](day-16/src/part1.rs) | [Solution](day-16/src/part2.rs) |
 | 17 | [Solution](day-17/src/part_1/mod.rs) | [Solution](day-17/src/part_2/mod.rs) |
 | 18 | [Solution](day-18/src/part_1/mod.rs) | [Solution](day-18/src/part_2/mod.rs) |
+| 19 | [Solution](day-19/src/part_1.rs) | [Solution](day-19/src/part_2.rs) |
 
 ## Redos
 
