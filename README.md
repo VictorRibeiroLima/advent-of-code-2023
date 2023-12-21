@@ -32,6 +32,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 18 | [Solution](day-18/src/part_1/mod.rs) | [Solution](day-18/src/part_2/mod.rs) |
 | 19 | [Solution](day-19/src/part_1.rs) | [Solution](day-19/src/part_2.rs) |
 | 20 | [Solution](day-20/src/part_1.rs) | [Solution](day-20/src/part_2.rs) |
+| 21 | [Solution](day-21/src/part_1.rs) | [Solution](day-21/src/part_2.rs) |
 
 ## Redos
 
@@ -41,3 +42,9 @@ I've decided to redo some of the challenges that I didn't like the first time ar
 | --- | ------ | ------ | --------- |
 | 4 | [Solution](day-4/src/bin/part_1_redo.rs) | [Solution](day-4/src/bin/part_2_redo.rs) | Recursion was a bad idea. |
 | 5 | - | [Solution](day-5-redo/src/bin/part_2.rs) | Brute-forcing my way through the solution took too long. |
+
+## Observations
+
+| Day | Part 1 | Part 2 |
+| --- | -------- | ------ |
+| 21 |          |I could not figure out on my own. I had to look the "data science" part of the solution up.|
