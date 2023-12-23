@@ -157,14 +157,14 @@ mod tests {
 
     #[test]
     fn test_input() {
-        let input = include_str!("../inputs/test_input_part_2.txt");
+        let input = include_str!("../inputs/test.txt");
         let result = process(input);
         assert_eq!(result, 281);
     }
 
     #[test]
     fn my_input() {
-        let input = include_str!("../inputs/my_input_part_2.txt");
+        let input = include_str!("../inputs/input.txt");
         let result = process(input);
         assert_eq!(result, 53340);
     }
