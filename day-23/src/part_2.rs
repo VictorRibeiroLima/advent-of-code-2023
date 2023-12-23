@@ -1,4 +1,4 @@
-use std::{collections::BinaryHeap, io::Write};
+use std::collections::{BinaryHeap, HashMap, HashSet};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 struct Tile {
@@ -8,10 +8,12 @@ struct Tile {
 
 struct Map {
     tiles: Vec<Vec<Option<Tile>>>,
+    intersections: Vec<Tile>,
+    graph: HashMap<Tile, Vec<(Tile, usize)>>,
 }
 
 impl Map {
-    pub fn new(input: &str) -> Self {
+    fn new(input: &str) -> Self {
         let mut tiles = Vec::new();
         for (i, line) in input.lines().enumerate() {
             let mut row = Vec::new();
@@ -24,35 +26,95 @@ impl Map {
             }
             tiles.push(row);
         }
-        Self { tiles }
+        let mut map = Map {
+            tiles,
+            intersections: Vec::new(),
+            graph: HashMap::new(),
+        };
+        let intersections = map.map_intersections();
+        map.intersections = intersections;
+        let graph = map.graph_intersection();
+        map.graph = graph;
+        map
     }
 
-    pub fn walk_longest(&self, start: Tile, end: (usize, usize)) -> usize {
-        let mut heap = BinaryHeap::new();
-        self.inner_walk(start, end, start, 0, &mut heap, vec![start]);
-        heap.pop().unwrap()
-    }
+    fn dfs(&self, start: Tile, end: Tile, seen: &mut HashSet<Tile>) -> usize {
+        if start == end {
+            return 0;
+        }
 
-    fn inner_walk(
-        &self,
-        start: Tile,
-        end: (usize, usize),
-        coming_from: Tile,
-        steps: usize,
-        heap: &mut BinaryHeap<usize>,
-        visited: Vec<Tile>,
-    ) {
-        let options = self.get_possible_tiles(start, coming_from, &visited);
-        for option in options {
-            println!("Visited len: {}", visited.len());
-            let mut visited = visited.clone();
-            visited.push(option);
-            if option.i == end.0 && option.j == end.1 {
-                heap.push(steps + 1);
-            } else {
-                self.inner_walk(option, end, start, steps + 1, heap, visited);
+        seen.insert(start);
+        let mut max = 0;
+        let tile_graph = self.graph.get(&start).unwrap();
+        for (tile, steps) in tile_graph {
+            if !seen.contains(tile) {
+                let other_dfs = self.dfs(*tile, end, seen);
+                let total = steps + other_dfs;
+                if total > max {
+                    max = total;
+                }
+                if max == 6874 {
+                    println!("FUUU")
+                }
             }
         }
+        seen.remove(&start);
+        max
+    }
+
+    fn graph_intersection(&self) -> HashMap<Tile, Vec<(Tile, usize)>> {
+        let mut graph = HashMap::new();
+        for intersection in &self.intersections {
+            let mut stack = Vec::new();
+            stack.push((0, *intersection));
+            let mut visited = HashSet::new();
+            while let Some((steps, tile)) = stack.pop() {
+                if steps != 0 && self.intersections.contains(&tile) && tile != *intersection {
+                    graph
+                        .entry(*intersection)
+                        .or_insert_with(Vec::new)
+                        .push((tile, steps));
+                    continue;
+                }
+
+                let options = self.get_possible_tiles_raw(tile);
+                for option in options {
+                    if !visited.contains(&option) {
+                        visited.insert(option);
+                        stack.push((steps + 1, option));
+                    }
+                }
+            }
+        }
+        graph
+    }
+
+    fn map_intersections(&self) -> Vec<Tile> {
+        let mut intersections = Vec::new();
+        intersections.push(Tile { i: 0, j: 1 });
+        for r in &self.tiles {
+            for tile in r {
+                if let Some(tile) = tile {
+                    let options = self.get_possible_tiles(*tile, *tile, &vec![]);
+                    if options.len() > 2 {
+                        intersections.push(*tile);
+                    }
+                }
+            }
+        }
+        intersections.push(Tile {
+            i: self.tiles.len() - 1,
+            j: self.tiles[0].len() - 2,
+        });
+        intersections
+    }
+
+    fn walk_longest(&self) -> usize {
+        let start = self.get_tile(0, 1).unwrap();
+        let end_i = (self.tiles.len() - 1) as isize;
+        let end_j = (self.tiles[0].len() - 2) as isize;
+        let end = self.get_tile(end_i, end_j).unwrap();
+        self.dfs(start, end, &mut HashSet::new())
     }
 
     fn get_tile(&self, i: isize, j: isize) -> Option<Tile> {
@@ -68,6 +130,32 @@ impl Map {
         let row = self.tiles.get(i as usize)?;
         let tile = row.get(j as usize)?;
         *tile
+    }
+
+    fn get_possible_tiles_raw(&self, tile: Tile) -> Vec<Tile> {
+        let mut tiles = Vec::new();
+        let i = tile.i;
+        let j = tile.j;
+
+        let up = self.get_tile(i as isize - 1, j as isize);
+        let down = self.get_tile(i as isize + 1, j as isize);
+        let left = self.get_tile(i as isize, j as isize - 1);
+        let right = self.get_tile(i as isize, j as isize + 1);
+        if let Some(up) = up {
+            tiles.push(up);
+        }
+        if let Some(left) = left {
+            tiles.push(left);
+        }
+        if let Some(down) = down {
+            tiles.push(down);
+        }
+
+        if let Some(right) = right {
+            tiles.push(right);
+        }
+
+        tiles
     }
 
     fn get_possible_tiles(&self, tile: Tile, coming_from: Tile, visited: &Vec<Tile>) -> Vec<Tile> {
@@ -107,11 +195,7 @@ impl Map {
 
 pub fn process(input: &str) -> usize {
     let map = Map::new(input);
-    let start = map.get_tile(0, 1).unwrap();
-    let i_len = map.tiles.len();
-    let j_len = map.tiles[0].len();
-    let end = (i_len - 1, j_len - 2);
-    let distance = map.walk_longest(start, end);
+    let distance = map.walk_longest();
     distance
 }
 #[cfg(test)]
@@ -119,14 +203,25 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_intersections() {
+        let input = include_str!("./inputs/test.txt");
+        let map = Map::new(input);
+        assert_eq!(map.intersections.len(), 9);
+    }
+
+    #[test]
+    fn test_graph() {
+        let input = include_str!("./inputs/test.txt");
+        let map = Map::new(input);
+        let graph = map.graph_intersection();
+        println!("{:#?}", graph);
+    }
+
+    #[test]
     fn test_walk_longest() {
         let input = include_str!("./inputs/test.txt");
         let map = Map::new(input);
-        let start = map.get_tile(0, 1).unwrap();
-        let i_len = map.tiles.len();
-        let j_len = map.tiles[0].len();
-        let end = (i_len - 1, j_len - 2);
-        let distance = map.walk_longest(start, end);
+        let distance = map.walk_longest();
         assert_eq!(distance, 154);
     }
 
@@ -134,11 +229,8 @@ mod tests {
     fn input_walk_longest() {
         let input = include_str!("./inputs/input.txt");
         let map = Map::new(input);
-        let start = map.get_tile(0, 1).unwrap();
-        let i_len = map.tiles.len();
-        let j_len = map.tiles[0].len();
-        let end = (i_len - 1, j_len - 2);
-        let distance = map.walk_longest(start, end);
+
+        let distance = map.walk_longest();
         assert_eq!(distance, 2314);
     }
 }
