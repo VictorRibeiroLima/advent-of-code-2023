@@ -1,4 +1,4 @@
-use std::collections::{BinaryHeap, HashMap, HashSet};
+use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 struct Tile {
@@ -53,9 +53,6 @@ impl Map {
                 if total > max {
                     max = total;
                 }
-                if max == 6874 {
-                    println!("FUUU")
-                }
             }
         }
         seen.remove(&start);
@@ -77,7 +74,7 @@ impl Map {
                     continue;
                 }
 
-                let options = self.get_possible_tiles_raw(tile);
+                let options = self.get_possible_tiles(tile);
                 for option in options {
                     if !visited.contains(&option) {
                         visited.insert(option);
@@ -95,7 +92,7 @@ impl Map {
         for r in &self.tiles {
             for tile in r {
                 if let Some(tile) = tile {
-                    let options = self.get_possible_tiles(*tile, *tile, &vec![]);
+                    let options = self.get_possible_tiles(*tile);
                     if options.len() > 2 {
                         intersections.push(*tile);
                     }
@@ -132,7 +129,7 @@ impl Map {
         *tile
     }
 
-    fn get_possible_tiles_raw(&self, tile: Tile) -> Vec<Tile> {
+    fn get_possible_tiles(&self, tile: Tile) -> Vec<Tile> {
         let mut tiles = Vec::new();
         let i = tile.i;
         let j = tile.j;
@@ -153,40 +150,6 @@ impl Map {
 
         if let Some(right) = right {
             tiles.push(right);
-        }
-
-        tiles
-    }
-
-    fn get_possible_tiles(&self, tile: Tile, coming_from: Tile, visited: &Vec<Tile>) -> Vec<Tile> {
-        let mut tiles = Vec::new();
-        let i = tile.i;
-        let j = tile.j;
-
-        let up = self.get_tile(i as isize - 1, j as isize);
-        let down = self.get_tile(i as isize + 1, j as isize);
-        let left = self.get_tile(i as isize, j as isize - 1);
-        let right = self.get_tile(i as isize, j as isize + 1);
-        if let Some(up) = up {
-            if up != coming_from && !visited.contains(&up) {
-                tiles.push(up);
-            }
-        }
-        if let Some(left) = left {
-            if left != coming_from && !visited.contains(&left) {
-                tiles.push(left);
-            }
-        }
-        if let Some(down) = down {
-            if down != coming_from && !visited.contains(&down) {
-                tiles.push(down);
-            }
-        }
-
-        if let Some(right) = right {
-            if right != coming_from && !visited.contains(&right) {
-                tiles.push(right);
-            }
         }
 
         tiles
@@ -231,6 +194,6 @@ mod tests {
         let map = Map::new(input);
 
         let distance = map.walk_longest();
-        assert_eq!(distance, 2314);
+        assert_eq!(distance, 6874);
     }
 }
