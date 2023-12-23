@@ -34,7 +34,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 20 | [Solution](day-20/src/part_1.rs) | [Solution](day-20/src/part_2.rs) |
 | 21 | [Solution](day-21/src/part_1.rs) | [Solution](day-21/src/part_2.rs) |
 | 22 | [Solution](day-22/src/main.rs) | [Solution](day-22/src/main.rs) |
-| 23 | [Solution](day-23/src/part_1.rs) | in progress |
+| 23 | [Solution](day-23/src/part_1.rs) | [Solution](day-23/src/part_2.rs) |
 
 ## Redos
 

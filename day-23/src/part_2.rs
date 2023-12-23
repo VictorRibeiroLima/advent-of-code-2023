@@ -38,20 +38,24 @@ impl Map {
         map
     }
 
-    fn dfs(&self, start: Tile, end: Tile, seen: &mut HashSet<Tile>) -> usize {
+    fn dfs(&self, start: Tile, end: Tile, seen: &mut HashSet<Tile>) -> Option<usize> {
         if start == end {
-            return 0;
+            return Some(0);
         }
 
         seen.insert(start);
-        let mut max = 0;
+        let mut max = None;
         let tile_graph = self.graph.get(&start).unwrap();
         for (tile, steps) in tile_graph {
             if !seen.contains(tile) {
                 let other_dfs = self.dfs(*tile, end, seen);
+                if other_dfs.is_none() {
+                    continue;
+                }
+                let other_dfs = other_dfs.unwrap();
                 let total = steps + other_dfs;
-                if total > max {
-                    max = total;
+                if max == None || total > max.unwrap() {
+                    max = Some(total);
                 }
             }
         }
@@ -66,7 +70,7 @@ impl Map {
             stack.push((0, *intersection));
             let mut visited = HashSet::new();
             while let Some((steps, tile)) = stack.pop() {
-                if steps != 0 && self.intersections.contains(&tile) && tile != *intersection {
+                if self.intersections.contains(&tile) && tile != *intersection {
                     graph
                         .entry(*intersection)
                         .or_insert_with(Vec::new)
@@ -111,7 +115,7 @@ impl Map {
         let end_i = (self.tiles.len() - 1) as isize;
         let end_j = (self.tiles[0].len() - 2) as isize;
         let end = self.get_tile(end_i, end_j).unwrap();
-        self.dfs(start, end, &mut HashSet::new())
+        self.dfs(start, end, &mut HashSet::new()).unwrap()
     }
 
     fn get_tile(&self, i: isize, j: isize) -> Option<Tile> {
