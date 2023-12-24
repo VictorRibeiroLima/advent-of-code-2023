@@ -1,5 +1,3 @@
-use std::collections::{BTreeSet, HashSet};
-
 use self::hailstone::HailStone;
 
 const MIN: i64 = 200_000_000_000_000;
@@ -26,8 +24,9 @@ impl Map {
         for i in 0..self.stones.len() {
             let mut count = 0;
             let stone = &self.stones[i];
-            for j in i + 1..self.stones.len() {
+            for j in 0..i {
                 let other = &self.stones[j];
+
                 let intersection = stone.paths_intersect(other);
                 match intersection {
                     Some(_) => {
@@ -36,7 +35,6 @@ impl Map {
                     None => {}
                 }
             }
-            println!("Stone {} has {} intersections", i, count);
             result += count;
         }
         result

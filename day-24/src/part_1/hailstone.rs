@@ -1,5 +1,3 @@
-use std::ops::Range;
-
 use super::line::{Line, Point};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
@@ -80,15 +78,11 @@ impl HailStone {
             LimitType::Never => return None,
         };
 
-        let other_min = std::cmp::min(other_x_steps, other_y_steps);
+        let x = self.x + (self.x_change_rate * x_steps as i64);
+        let y = self.y + (self.y_change_rate * y_steps as i64);
 
-        let steps = std::cmp::min(min, other_min);
-
-        let x = self.x + self.x_change_rate * steps as i64;
-        let y = self.y + self.y_change_rate * steps as i64;
-
-        let other_x = other.x + other.x_change_rate * steps as i64;
-        let other_y = other.y + other.y_change_rate * steps as i64;
+        let other_x = other.x + (other.x_change_rate * other_x_steps as i64);
+        let other_y = other.y + (other.y_change_rate * other_y_steps as i64);
 
         let min_x = std::cmp::min(x, self.x) as f64;
         let max_x = std::cmp::max(x, self.x) as f64;
@@ -100,12 +94,22 @@ impl HailStone {
         let other_min_y = std::cmp::min(other_y, other.y) as f64;
         let other_max_y = std::cmp::max(other_y, other.y) as f64;
 
+        let other_min = std::cmp::min(other_x_steps, other_y_steps);
+
+        let steps = std::cmp::min(min, other_min);
+
+        let x_steps: i64 = self.x + self.x_change_rate * steps as i64;
+        let y_steps = self.y + self.y_change_rate * steps as i64;
+
+        let other_x_steps = other.x + other.x_change_rate * steps as i64;
+        let other_y_steps = other.y + other.y_change_rate * steps as i64;
+
         let self_point1 = Point::new(self.x, self.y);
-        let self_point2 = Point::new(x, y);
+        let self_point2 = Point::new(x_steps, y_steps);
         let self_line = Line::new(self_point1, self_point2);
 
         let other_point1 = Point::new(other.x, other.y);
-        let other_point2 = Point::new(other_x, other_y);
+        let other_point2 = Point::new(other_x_steps, other_y_steps);
         let other_line = Line::new(other_point1, other_point2);
 
         let intersection = self_line.intersection(&other_line);
