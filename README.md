@@ -51,3 +51,4 @@ I've decided to redo some of the challenges that I didn't like the first time ar
 | Day | Part 1 | Part 2 |
 | --- | -------- | ------ |
 | 21 |          |I could not figure out on my own. I had to look the "data science" part of the solution up.|
+| 24 |          |The amount of linear algebra involved in this one was too much for me. maybe I'll come back to it later.|
