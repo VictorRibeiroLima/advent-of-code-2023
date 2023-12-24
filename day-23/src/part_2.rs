@@ -66,6 +66,7 @@ impl Map {
     fn graph_intersection(&self) -> HashMap<Tile, Vec<(Tile, usize)>> {
         let mut graph = HashMap::new();
         for intersection in &self.intersections {
+            //For each intersection,we traverse each possible path,until we reach another intersection
             let mut stack = Vec::new();
             stack.push((0, *intersection));
             let mut visited = HashSet::new();
@@ -75,6 +76,9 @@ impl Map {
                         .entry(*intersection)
                         .or_insert_with(Vec::new)
                         .push((tile, steps));
+
+                    //We continue here so we don't start a new path from an new intersection,this ensures we only
+                    //traverse each path once from the intersection to another intersection directly reachable from it
                     continue;
                 }
 
