@@ -36,6 +36,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 22 | [Solution](day-22/src/main.rs) | [Solution](day-22/src/main.rs) |
 | 23 | [Solution](day-23/src/part_1.rs) | [Solution](day-23/src/part_2.rs) |
 | 24 | [Solution](day-24/src/part_1/mod.rs) | unsolved |
+| 25 | [Solution](day-25/src/part_1.rs) | Just a mocking of the fact that i din't complete day 24 |
 
 ## Redos
 
