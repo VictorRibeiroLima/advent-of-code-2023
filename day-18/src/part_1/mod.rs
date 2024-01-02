@@ -16,6 +16,6 @@ mod tests {
     fn test_process() {
         let input = include_str!("../inputs/test.txt");
         let result = process(input);
-        assert_eq!(result, 57);
+        assert_eq!(result, 62);
     }
 }

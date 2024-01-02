@@ -1,13 +1,12 @@
-use crate::tower::Tower;
-
 mod tower;
+
+mod part_1;
+mod part_2;
 
 fn main() {
     let input = include_str!("./inputs/input.txt");
-    let mut tower = Tower::new(input);
-    tower.apply_gravity();
-    let destroyable = tower.mark_unbreakable();
-    let dropped = tower.count_drops();
-    println!("Part 1: {}", destroyable);
-    println!("Part 2: {}", dropped);
+    let result = part_1::process(input);
+    println!("Part 1: {}", result);
+    let result = part_2::process(input);
+    println!("Part 2: {}", result);
 }

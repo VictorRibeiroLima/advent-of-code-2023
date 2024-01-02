@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 fn main() {
-    let input = include_str!("../inputs/my_input_part_1.txt");
+    let input = include_str!("../inputs/input.txt");
     let result = process(input);
     println!("Result: {}", result);
 }
@@ -64,13 +64,13 @@ mod tests {
 
     #[test]
     fn test_part_1() {
-        let input = include_str!("../inputs/test_input_part_1.txt");
+        let input = include_str!("../inputs/test.txt");
         assert_eq!(process(input), 13);
     }
 
     #[test]
     fn my_input() {
-        let input = include_str!("../inputs/my_input_part_1.txt");
+        let input = include_str!("../inputs/input.txt");
         let result = process(input);
         assert_eq!(result, 23941);
     }

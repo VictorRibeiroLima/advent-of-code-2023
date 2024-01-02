@@ -15,7 +15,7 @@ pub fn process(input: &str) -> u64 {
 mod test {
     #[test]
     fn test_process() {
-        let input = include_str!("./input.txt");
+        let input = include_str!("./inputs/input.txt");
         assert_eq!(super::process(input), 898731036);
     }
 }

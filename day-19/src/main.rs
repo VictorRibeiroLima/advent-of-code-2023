@@ -8,8 +8,8 @@ mod interpreter;
 mod part_1;
 mod part_2;
 
-pub type FunctionMap = HashMap<String, Function>;
-pub type Piece = [u16; 4];
+type FunctionMap = HashMap<String, Function>;
+type Piece = [u16; 4];
 
 fn main() {
     let input = include_str!("./inputs/input.txt");

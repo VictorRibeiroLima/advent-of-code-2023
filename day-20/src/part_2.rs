@@ -56,7 +56,7 @@ fn gcd(first: usize, second: usize) -> usize {
 mod test {
     #[test]
     fn test_process() {
-        let input = include_str!("./input.txt");
+        let input = include_str!("./inputs/input.txt");
         assert_eq!(super::process(input), 229414480926893);
     }
 }

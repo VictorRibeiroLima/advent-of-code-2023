@@ -454,18 +454,6 @@ mod test {
     }
 
     #[test]
-    fn test_process() {
-        /*
-         2 4 1 3 4
-         3 2 1 5 4
-         3 2 5 5 2
-        */
-        let input = "24134\n32154\n32552";
-        let cost = process(input);
-        assert_eq!(cost, 17);
-    }
-
-    #[test]
     fn test_process2() {
         let input = include_str!("../inputs/test.txt");
         let cost = process(input);

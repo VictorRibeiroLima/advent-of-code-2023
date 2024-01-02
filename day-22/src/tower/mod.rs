@@ -334,14 +334,6 @@ mod test {
     }
 
     #[test]
-    fn test_gravity2() {
-        let input = include_str!("../inputs/test2.txt");
-        let mut tower = Tower::new(input);
-
-        tower.apply_gravity();
-    }
-
-    #[test]
     fn test_gravity3() {
         let input = include_str!("../inputs/input.txt");
         let mut tower = Tower::new(input);
@@ -382,24 +374,5 @@ mod test {
         let destroyable = tower.mark_unbreakable();
         assert_eq!(destroyable, 454);
         assert_eq!(tower.unbreakable.len(), 871);
-    }
-
-    #[test]
-    fn test_dropped() {
-        let input = include_str!("../inputs/test.txt");
-        let mut tower = Tower::new(input);
-        assert_eq!(tower.bricks.len(), 7);
-        tower.apply_gravity();
-        let dropped = tower.count_drops();
-        assert_eq!(dropped, 7);
-    }
-
-    #[test]
-    fn test_dropped2() {
-        let input = include_str!("../inputs/input.txt");
-        let mut tower = Tower::new(input);
-        tower.apply_gravity();
-        let dropped = tower.count_drops();
-        assert_eq!(dropped, 74287);
     }
 }

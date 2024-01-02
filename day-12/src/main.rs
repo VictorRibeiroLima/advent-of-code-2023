@@ -1,6 +1,7 @@
 mod part_1;
 mod part_2;
 mod search;
+
 fn main() {
     let input = include_str!("./inputs/input.txt");
 

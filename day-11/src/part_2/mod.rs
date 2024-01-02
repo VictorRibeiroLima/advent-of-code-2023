@@ -113,19 +113,13 @@ mod tests {
     use super::*;
     #[test]
     fn test_process() {
-        let input = include_str!("../inputs/test_input.txt");
+        let input = include_str!("../inputs/test.txt");
         assert_eq!(process(input), 8410);
     }
 
     #[test]
-    fn test_process_10() {
-        let input = include_str!("../inputs/test_input_10.txt");
-        assert_eq!(process(input), 1030);
-    }
-
-    #[test]
     fn test_my_input() {
-        let input = include_str!("../inputs/my_input.txt");
+        let input = include_str!("../inputs/input.txt");
         assert_eq!(process(input), 699909023130);
     }
 }

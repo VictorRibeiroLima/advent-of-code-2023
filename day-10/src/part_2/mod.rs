@@ -2,7 +2,7 @@ use crate::map::{pipe::PipeType, Map, PieceType};
 
 pub fn process(input: &str) -> u32 {
     let map = Map::init(input);
-    println!("{}", map);
+
     let mut count_inside = 0;
     for i in 1..map.map.len() - 1 {
         let line = &map.map[i];
@@ -68,28 +68,28 @@ mod test {
 
     #[test]
     fn test_process_4() {
-        let input = include_str!("../inputs/4_inner_input.txt");
+        let input = include_str!("../inputs/test3.txt");
         let result = process(input);
         assert_eq!(result, 4);
     }
 
     #[test]
     fn test_process_8() {
-        let input = include_str!("../inputs/8_inner_input.txt");
+        let input = include_str!("../inputs/test4.txt");
         let result = process(input);
         assert_eq!(result, 8);
     }
 
     #[test]
     fn test_process_10() {
-        let input = include_str!("../inputs/10_inner_input.txt");
+        let input = include_str!("../inputs/test5.txt");
         let result = process(input);
         assert_eq!(result, 10);
     }
 
     #[test]
     fn my_input() {
-        let input = include_str!("../inputs/my_input.txt");
+        let input = include_str!("../inputs/input.txt");
         let result = process(input);
         assert_eq!(result, 501);
     }

@@ -22,14 +22,14 @@ mod tests {
 
     #[test]
     fn test_process() {
-        let input = include_str!("../inputs/test_input.txt");
+        let input = include_str!("../inputs/test.txt");
         let result = process(input);
         assert_eq!(result, 6440);
     }
 
     #[test]
     fn test_process_2() {
-        let input = include_str!("../inputs/my_input.txt");
+        let input = include_str!("../inputs/input.txt");
         let result = process(input);
         assert_eq!(result, 249390788);
     }

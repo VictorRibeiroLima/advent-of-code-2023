@@ -145,28 +145,28 @@ mod test {
 
     #[test]
     fn test_1() {
-        let input = include_str!("../inputs/test_input.txt");
+        let input = include_str!("../inputs/test.txt");
         let result = process(input);
         assert_eq!(result, 2);
     }
 
     #[test]
     fn test_2() {
-        let input = include_str!("../inputs/test_input_2.txt");
+        let input = include_str!("../inputs/test2.txt");
         let result = process(input);
         assert_eq!(result, 6);
     }
 
     #[test]
     fn test_3() {
-        let input = include_str!("../inputs/test_input_3.txt");
+        let input = include_str!("../inputs/test3.txt");
         let result = process(input);
         assert_eq!(result, 6);
     }
 
     #[test]
     fn test_4() {
-        let input = include_str!("../inputs/my_input.txt");
+        let input = include_str!("../inputs/input.txt");
         let result = process(input);
         assert_eq!(result, 11_283_670_395_017);
     }

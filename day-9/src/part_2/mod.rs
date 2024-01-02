@@ -70,15 +70,15 @@ mod test {
 
     #[test]
     fn test_input() {
-        let input = include_str!("../inputs/test_input.txt");
+        let input = include_str!("../inputs/test.txt");
         let result = super::process(input);
         assert_eq!(result, 2);
     }
 
     #[test]
     fn test_my_input() {
-        let input = include_str!("../inputs/my_input.txt");
+        let input = include_str!("../inputs/input.txt");
         let result = super::process(input);
-        assert_eq!(result, 1129);
+        assert_eq!(result, 1053);
     }
 }

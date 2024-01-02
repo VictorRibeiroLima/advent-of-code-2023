@@ -70,6 +70,7 @@ impl Graph {
         None
     }
 
+    #[allow(dead_code)]
     fn get_vertex(&self, label: &str) -> Option<&Vertex> {
         for vertex in self.vertices.iter() {
             if vertex.label.contains(label) {
@@ -164,6 +165,7 @@ impl Graph {
         panic!("No min cut found");
     }
 
+    #[allow(dead_code)]
     fn write_graph_file(&self, filename: &str) {
         let file = std::fs::File::create(filename).unwrap();
         let mut buffer_writer = std::io::BufWriter::new(file);

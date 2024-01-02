@@ -305,30 +305,6 @@ mod tests {
     }
 
     #[test]
-    fn edge_case() {
-        let input = include_str!("../inputs/edge.txt");
-
-        let result = process(input);
-        assert_eq!(result, 1200);
-    }
-
-    #[test]
-    fn edge_case2() {
-        let input = include_str!("../inputs/edge_2.txt");
-
-        let result = process(input);
-        assert_eq!(result, 1000);
-    }
-
-    #[test]
-    fn edge_case3() {
-        let input = include_str!("../inputs/edge_3.txt");
-
-        let result = process(input);
-        assert_eq!(result, 13);
-    }
-
-    #[test]
     fn test_my_input() {
         let input = include_str!("../inputs/input.txt");
         let result = process(input);

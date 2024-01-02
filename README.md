@@ -12,12 +12,12 @@ Those are the solutions I've used to get the answers for the challenges.
 
 | Day | Part 1 | Part 2 |
 | --- | ------ | ------ |
-| 1 | [Solution](day-1/src/bin/part_1.rs) | [Solution](day-1/src/bin/part_2.rs) |
-| 2 | [Solution](day-2/src/bin/part_1.rs) | [Solution](day-2/src/bin/part_2.rs) |
-| 3 | [Solution](day-3/src/bin/part_1.rs) | [Solution](day-3/src/bin/part_2.rs) |
+| 1 | [Solution](day-1/src/part_1.rs) | [Solution](day-1/src/part_2.rs) |
+| 2 | [Solution](day-2/src/part_1.rs) | [Solution](day-2/src/part_2.rs) |
+| 3 | [Solution](day-3/src/part_1.rs) | [Solution](day-3/src/part_2.rs) |
 | 4 | [Solution](day-4/src/bin/part_1.rs) | [Solution](day-4/src/bin/part_2.rs) |
-| 5 | [Solution](day-5/src/bin/part_1.rs) | [Solution](day-5/src/bin/part_2.rs) |
-| 6 | [Solution](day-6/src/bin/part_1.rs) | [Solution](day-6/src/bin/part_2.rs) |
+| 5 | [Solution](day-5/src/part_1.rs) | [Solution](day-5/src/old/part_2.rs) |
+| 6 | [Solution](day-6/src/part_1.rs) | [Solution](day-6/src/part_2.rs) |
 | 7 | [Solution](day-7/src/part_1/mod.rs) | [Solution](day-7/src/part_2/mod.rs) |
 | 8 | [Solution](day-8/src/part_1/mod.rs) | [Solution](day-8/src/part_2/mod.rs) |
 | 9 | [Solution](day-9/src/part_1/mod.rs) | [Solution](day-9/src/part_2/mod.rs) |
@@ -33,7 +33,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 19 | [Solution](day-19/src/part_1.rs) | [Solution](day-19/src/part_2.rs) |
 | 20 | [Solution](day-20/src/part_1.rs) | [Solution](day-20/src/part_2.rs) |
 | 21 | [Solution](day-21/src/part_1.rs) | [Solution](day-21/src/part_2.rs) |
-| 22 | [Solution](day-22/src/main.rs) | [Solution](day-22/src/main.rs) |
+| 22 | [Solution](day-22/src/part_1.rs) | [Solution](day-22/src/part_2.rs) |
 | 23 | [Solution](day-23/src/part_1.rs) | [Solution](day-23/src/part_2.rs) |
 | 24 | [Solution](day-24/src/part_1/mod.rs) | unsolved |
 | 25 | [Solution](day-25/src/part_1/mod.rs) | Just a mocking of the fact that i din't complete day 24 |
@@ -44,8 +44,8 @@ I've decided to redo some of the challenges that I didn't like the first time ar
 
 | Day | Part 1 | Part 2 |  Comments |
 | --- | ------ | ------ | --------- |
-| 4 | [Solution](day-4/src/bin/part_1_redo.rs) | [Solution](day-4/src/bin/part_2_redo.rs) | Recursion was a bad idea. |
-| 5 | - | [Solution](day-5-redo/src/bin/part_2.rs) | Brute-forcing my way through the solution took too long. |
+| 4 | [Solution](day-4/src/part_1.rs) | [Solution](day-4/src/part_2.rs) | Recursion was a bad idea. |
+| 5 | - | [Solution](day-5/src/part_2.rs) | Brute-forcing my way through the solution took too long. |
 
 ## Observations
 
