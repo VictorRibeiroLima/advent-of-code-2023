@@ -6,7 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-yew = "0.21.0"
 day-1 = { path = "../day-1" }
 day-2 = { path = "../day-2" }
 day-3 = { path = "../day-3" }
@@ -32,3 +31,11 @@ day-22 = { path = "../day-22" }
 day-23 = { path = "../day-23" }
 day-24 = { path = "../day-24" }
 day-25 = { path = "../day-25" }
+yew = { version = "0.21", features = ["csr"] }
+yew-agent = "0.3.0"
+web-sys = {version="0.3.66" ,features=["HtmlInputElement","HtmlSelectElement"]}
+wasm-bindgen = "0.2.89"
+gloo = "0.11.0"
+stylist ={ version = "0.13.0",features=["yew"]}
+wasm-bindgen-futures = "0.4.39"
+serde = "1.0.194"
