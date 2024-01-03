@@ -27,7 +27,7 @@ Those are the solutions I've used to get the answers for the challenges.
 | 13 | [Solution](day-13/src/part_1/mod.rs) | [Solution](day-13/src/part_2/mod.rs) |
 | 14 | [Solution](day-14/src/part_1/mod.rs) | [Solution](day-14/src/part_2/mod.rs) |
 | 15 | [Solution](day-15/src/part_1/mod.rs) | [Solution](day-15/src/part_2/mod.rs) |
-| 16 | [Solution](day-16/src/part1.rs) | [Solution](day-16/src/part2.rs) |
+| 16 | [Solution](day-16/src/part_1.rs) | [Solution](day-16/src/part_2.rs) |
 | 17 | [Solution](day-17/src/part_1/mod.rs) | [Solution](day-17/src/part_2/mod.rs) |
 | 18 | [Solution](day-18/src/part_1/mod.rs) | [Solution](day-18/src/part_2/mod.rs) |
 | 19 | [Solution](day-19/src/part_1.rs) | [Solution](day-19/src/part_2.rs) |
@@ -53,3 +53,17 @@ I've decided to redo some of the challenges that I didn't like the first time ar
 | --- | -------- | ------ |
 | 21 |          |I could not figure out on my own. I had to look the "data science" part of the solution up.|
 | 24 |          |The amount of linear algebra involved in this one was too much for me. maybe I'll come back to it later.|
+
+## TODO
+I'm making a yew app to resolve the challenges.
+
+Any multi-threaded solution will not work since wasm doesn't support it yet.
+
+So i need to refactor:
+- [ ] Day 5-part 2
+- [ ] Day 16-part 2
+
+I need to get rid of the unwraps so that the app doesn't crash on wrong inputs.
+
+Day 24 part 1 will not work because of the i64 type not being supported by wasm.
+Day 18 part 2 might not work in some inputs because of the same reason.
