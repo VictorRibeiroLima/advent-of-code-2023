@@ -66,4 +66,5 @@ So i need to refactor:
 I need to get rid of the unwraps so that the app doesn't crash on wrong inputs.
 
 Day 24 part 1 will not work because of the i64 type not being supported by wasm.
+
 Day 18 part 2 might not work in some inputs because of the same reason.
